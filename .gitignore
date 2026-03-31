@@ -1,0 +1,14 @@
+
+# Environment / Local Config
+# IDE / Editor
+# Keeping the plugins/ folder for documentation but ignoring the specific content
+# OS generated files
+# Plugin Ignored Sources
+*.tmp
+.DS_Store
+.idea/
+.vscode/
+LLM-CONFIG.md
+Thumbs.db
+plugins/systemdeck/
+plugins/vics-hideaway/
