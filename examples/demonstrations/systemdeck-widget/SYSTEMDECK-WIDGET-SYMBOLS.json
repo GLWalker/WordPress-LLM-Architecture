@@ -1,0 +1,21 @@
+{
+  "governance": {
+    "schema": "schemas/core/v1/symbol-schema.json",
+    "authority": "Tier 2",
+    "tier": 2,
+    "last_validated": "2026-05-15"
+  },
+  "records": [
+    {
+      "identifier": "systemdeck.widgets.NotesWidget",
+      "type": "class",
+      "layer": "PHP",
+      "authority": "Tier 2",
+      "description": "Custom notes widget for SystemDeck workspace.",
+      "file_path": "src/Widgets/NotesWidget.php",
+      "governance": {
+        "is_immutable": false
+      }
+    }
+  ]
+}

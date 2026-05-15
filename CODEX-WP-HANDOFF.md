@@ -11,7 +11,7 @@ Provides a machine-readable format for summarizing session state during transiti
 - **Architecture**: WordPress LLM Source Corpus (Tier 0 Core + Tier 2 Theme Extension).
 - **Core Corpus**: Previously ingested and verified.
 - **Theme Extension**: Previously ingested and verified (Twenty Twenty-Five).
-- **Governance**: WORDPRESS-LAYER-GOVERNANCE-CONTRACT.md and WORDPRESS-THEME-EXTENSION-GOVERNANCE-CONTRACT.md applied.
+- **Governance**: WORDPRESS-LLMS-LAYER-GOVERNANCE-CONTRACT.md and WORDPRESS-LLMS-THEME-EXTENSION-CONTRACT.md applied.
 
 ## 2. Previous Ingestion Status
 

@@ -1,0 +1,32 @@
+{
+  "governance": {
+    "schema": "schemas/core/v1/symbol-schema.json",
+    "authority": "Tier 2",
+    "tier": 2,
+    "last_validated": "2026-05-15"
+  },
+  "records": [
+    {
+      "identifier": "project-x.core.MainController",
+      "type": "class",
+      "layer": "PHP",
+      "authority": "Tier 2",
+      "description": "Primary controller for Project X operations.",
+      "file_path": "src/Core/MainController.php",
+      "governance": {
+        "is_immutable": false
+      }
+    },
+    {
+      "identifier": "project-x.ajax.save_settings",
+      "type": "function",
+      "layer": "PHP",
+      "authority": "Tier 2",
+      "description": "Secure handler for saving project settings.",
+      "file_path": "src/Handlers/Ajax/SaveSettings.php",
+      "governance": {
+        "is_immutable": false
+      }
+    }
+  ]
+}

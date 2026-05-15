@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WordPress LLM Event Record",
+  "description": "Defines a WordPress hook (action or filter) and its execution logic.",
+  "type": "object",
+  "required": ["identifier", "type", "hook_name", "authority"],
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "description": "Unique namespaced identifier (e.g., project.events.save_post)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["action", "filter", "internal_event"]
+    },
+    "hook_name": {
+      "type": "string",
+      "description": "The actual WordPress hook name (e.g., init, wp_enqueue_scripts)"
+    },
+    "authority": {
+      "type": "string",
+      "enum": ["Tier 0", "Tier 1", "Tier 2", "Tier 3"]
+    },
+    "priority": {
+      "type": "integer",
+      "default": 10
+    },
+    "accepted_args": {
+      "type": "integer",
+      "default": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "context": {
+      "type": "string",
+      "enum": ["admin", "frontend", "ajax", "rest", "cron", "global"]
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "is_immutable": { "type": "boolean" },
+        "security_critical": { "type": "boolean" }
+      }
+    }
+  }
+}

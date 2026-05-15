@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WordPress LLM Symbol Record",
+  "description": "Defines a structural symbol (Class, Function, Constant) within the WordPress corpus.",
+  "type": "object",
+  "required": ["identifier", "type", "layer", "authority"],
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "description": "Unique namespaced identifier (e.g., project.core.ClassName)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["class", "function", "constant", "interface", "trait"]
+    },
+    "layer": {
+      "type": "string",
+      "enum": ["PHP", "JS", "JSON", "CSS", "XML"]
+    },
+    "authority": {
+      "type": "string",
+      "enum": ["Tier 0", "Tier 1", "Tier 2", "Tier 3"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "file_path": {
+      "type": "string"
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "is_immutable": { "type": "boolean" },
+        "deprecation_status": { "type": "string" }
+      }
+    }
+  }
+}

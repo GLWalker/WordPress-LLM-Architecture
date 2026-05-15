@@ -11,7 +11,7 @@ Load this file first to understand the system architecture, load order, and acti
 Before doing any work, you must load and enforce these files in this exact precedence:
 
 1. `AGENT-RULES.md`
-2. `core/WORDPRESS-LLM-EXECUTION.md`
+2. `governance/WORDPRESS-LLMS-EXECUTION-GOVERNANCE.md`
 3. Contracts in `contracts/`
 4. Core corpus files in `core/`
 5. Supplemental docs and handoff docs
@@ -21,8 +21,9 @@ Before doing any work, you must load and enforce these files in this exact prece
 The following documents define the system boundaries. Load them now:
 
 - `AGENT-RULES.md`: Required rules for context isolation and behavior.
-- `contracts/WORDPRESS-LAYER-GOVERNANCE-CONTRACT.md`: Defines architectural layers and the Dual Confidence Model.
-- `contracts/WORDPRESS-THEME-EXTENSION-GOVERNANCE-CONTRACT.md`: (if present) Defines how to extend themes as Tier 2 Extensions.
+- `governance/WORDPRESS-LLMS-EXECUTION-GOVERNANCE.md`: Mandatory execution guidance.
+- `contracts/WORDPRESS-LLMS-LAYER-GOVERNANCE-CONTRACT.md`: Defines architectural layers.
+- `contracts/WORDPRESS-LLMS-THEME-EXTENSION-CONTRACT.md`: (if present) defines extensions.
 
 ## 3. Load the Configuration
 
@@ -34,16 +35,28 @@ If only `LLM-CONFIG-SAMPLE.md` exists:
 2. Update `LLM-CONFIG.md` with the correct absolute paths for your environment.
 3. Use the updated configuration for path awareness.
 
+If remote WordPress core verification is configured:
+
+- Load `governance/WORDPRESS-LLMS-REMOTE-SOURCE-GOVERNANCE.md`
+- Use the configured remote WordPress core source only for Remote Core Verification
+- Never treat the remote source as project architecture authority
+
 ## 4. Ingest the Corpus and Execution Rules
 
 Ingest the relevant layers of the WordPress LLM Source Corpus based on the task:
 
-- `core/WORDPRESS-LLM-EXECUTION.md` (Mandatory execution guidance)
+- `governance/WORDPRESS-LLMS-EXECUTION-GOVERNANCE.md` (Mandatory execution guidance)
 - For core logic: `core/`
 - For theme-specific logic: `themes/`
 - For general theory and why this exists: `docs/`
 
-## 5. Follow the Handoff
+## 6. Manifest Validation (Machine Law)
+
+When working with JSON manifests in `examples/manifests/` or project-specific intelligence:
+- The agent SHOULD verify manifest integrity using `tools/validate-manifests.js` (if Node.js environment is available).
+- If validation fails, the agent MUST stop and request structural correction.
+
+## 7. Execution Mode Classification
 
 If a transition is needed (e.g., across sessions), read:
 

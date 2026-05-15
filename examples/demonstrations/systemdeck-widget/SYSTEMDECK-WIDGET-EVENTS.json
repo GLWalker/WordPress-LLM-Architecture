@@ -1,0 +1,22 @@
+{
+  "governance": {
+    "schema": "schemas/core/v1/event-schema.json",
+    "authority": "Tier 2",
+    "tier": 2,
+    "last_validated": "2026-05-15"
+  },
+  "records": [
+    {
+      "identifier": "systemdeck.events.register_notes_widget",
+      "type": "action",
+      "hook_name": "sd_register_widgets",
+      "authority": "Tier 2",
+      "priority": 10,
+      "description": "Registers the NotesWidget during SystemDeck initialization.",
+      "context": "global",
+      "governance": {
+        "is_immutable": false
+      }
+    }
+  ]
+}

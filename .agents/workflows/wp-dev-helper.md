@@ -18,7 +18,7 @@ This workflow initializes the authoritative WordPress intelligence manifests for
    - Load theme-level manifests from `llms-docs/themes/`.
 
 4. **Execute with WordPress Precision**
-   - Apply the deterministic rules in `llms-docs/core/WORDPRESS-LLM-EXECUTION.md` for all tasks.
+   - Apply the deterministic rules in `llms-docs/governance/WORDPRESS-LLM-EXECUTION.md` for all tasks.
    - Refuse hallucinations and ensure all outputs are source-traceable.
 
 ---

@@ -1,4 +1,4 @@
-# WORDPRESS-LLM-EXECUTION.md
+# WORDPRESS-LLMS-EXECUTION-GOVERNANCE.md
 
 ## 1. Classification
 
@@ -114,6 +114,25 @@ If structure is unknown:
 
 - Request file
 
+For code modification tasks, the agent MUST use surgical patch behavior.
+
+Before proposing or applying changes, the agent MUST identify:
+
+- File path.
+- Existing implementation location.
+- Target selector, function, hook, region, or behavior.
+- Non-goals.
+
+The agent MUST NOT:
+
+- Rewrite entire files without full file context.
+- Refactor unrelated code.
+- Rename unrelated symbols.
+- Move code unless explicitly requested.
+- Modify adjacent behavior without approval.
+
+If the exact implementation cannot be located, the agent MUST request the required file or provide only a safe insertion pattern.
+
 ## 6. Refusal Rules
 
 The agent MUST refuse when:
@@ -160,7 +179,26 @@ The agent MUST NOT:
 - Introduce non-WordPress patterns
 - Include build tools or environment setup unless requested
 
-## 10. Enforcement
+## 10. Remote WordPress Core Verification
+
+When local WordPress core files are unavailable, the agent MAY verify WordPress core behavior against the configured official remote WordPress core source.
+
+Remote verification should be used for:
+
+- WordPress hooks
+- WordPress functions
+- script/style handles
+- admin lifecycle behavior
+- media/editor internals
+- block editor internals
+- REST behavior
+- enqueue behavior
+
+Remote verification MUST NOT be used to infer plugin or theme architecture.
+
+Project source always takes precedence over remote verification.
+
+## 11. Enforcement
 
 `AGENT-RULES.md` represents the highest authority in this system. If any instruction in this file conflicts with `AGENT-RULES.md`, the agent MUST follow `AGENT-RULES.md`.
 
@@ -170,7 +208,7 @@ Otherwise, the agent MUST:
 - Refuse non-compliant actions
 - Request required files or clarification
 
-## 11. Execution Mode (Mandatory)
+## 12. Execution Mode (Mandatory)
 
 When a task is provided:
 

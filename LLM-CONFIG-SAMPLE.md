@@ -38,6 +38,26 @@ A template for LLM path awareness and environment calibration.
 
 ---
 
+## Remote WordPress Core Source
+
+# Remote WordPress core source is:
+# - optional
+# - read-only
+# - verification-only
+# - lower authority than local project source
+
+REMOTE_WP_CORE_ENABLED=true
+
+REMOTE_WP_CORE_MODE=verification_only
+
+REMOTE_WP_CORE_REPOSITORY=https://github.com/WordPress/wordpress-develop
+
+REMOTE_WP_CORE_BRANCH=trunk
+
+REMOTE_WP_CORE_RAW_BASE=https://raw.githubusercontent.com/WordPress/wordpress-develop/trunk/
+
+---
+
 ## Notes
 
 - This metadata is for path awareness only.

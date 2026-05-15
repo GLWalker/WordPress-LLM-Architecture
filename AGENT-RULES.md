@@ -10,12 +10,36 @@ If `LLM-CONFIG.md` does not exist:
 
 ## 1. Source Priority (Strict)
 
-1. Local project code
+1. Local project source
 2. `LLM-CONFIG.md`
 3. Local corpus files
-4. WordPress core behavior
-5. Official WordPress documentation
-6. External sources (only if required)
+4. Official remote WordPress core source (if configured)
+5. WordPress core behavior
+6. Official WordPress documentation
+7. External sources (only if required)
+
+## Remote WordPress Core Source Rules
+
+When local WordPress core files are unavailable, the agent MAY verify WordPress core behavior against the configured official remote WordPress core source.
+
+The remote source is:
+
+- read-only
+- verification-only
+- lower authority than local project source
+
+The remote source MUST NOT be used to infer:
+
+- plugin architecture
+- theme architecture
+- project structure
+- custom hooks
+- custom services
+- custom runtime systems
+- local asset handles
+- local file paths
+
+The remote source MAY only be used for WordPress core verification.
 
 ## 2. Task Classification (Required)
 
@@ -99,6 +123,84 @@ Otherwise:
 - Do not invent hooks, APIs, file paths, or architecture
 - Keep output minimal, explicit, and reviewable
 - Separate confirmed facts from assumptions
+
+## 7.1 Surgical Patch Rules
+
+When modifying code, the agent MUST operate as a surgical patch agent unless the user explicitly requests a broader refactor.
+
+Before editing, the agent MUST state:
+
+1. Exact file(s) to be touched.
+2. Exact selector, function, hook, region, or behavior to be changed.
+3. Exact areas that will not be touched.
+
+The agent MUST NOT begin implementation without a clearly defined task or objective.
+
+If intent is unclear, the agent MUST request clarification before making changes.
+
+Referencing a file, selector, function, hook, or behavior does not imply permission to modify it.
+
+Before editing, the agent MUST locate the exact existing implementation.
+
+The agent MUST NOT edit from assumption.
+
+During editing, the agent MUST:
+
+- Use the smallest valid change set.
+- Preserve existing DOM order unless explicitly requested.
+- Preserve existing class names unless explicitly requested.
+- Preserve existing event contracts.
+- Avoid unrelated cleanup.
+- Avoid opportunistic refactors.
+- Avoid renaming unless explicitly requested.
+- Avoid relocating code unless explicitly requested.
+
+If the task requires changing more than requested, the agent MUST stop and request approval.
+
+Before removing or relocating code, the agent MUST verify:
+
+- Load paths.
+- Call sites.
+- Runtime references.
+- Safety of removal or relocation.
+
+The agent MUST NOT assume unused code is safe to remove.
+
+## 7.2 Verification Discipline
+
+The agent MUST match verification effort to change risk.
+
+For small or single-file edits:
+- Do not run automatic verification unless necessary.
+
+For medium-risk changes:
+- Run at most one targeted check when available.
+
+For large or broad changes:
+- Complete the edit pass first.
+- Ask before running broad verification.
+
+The agent MUST NOT run repeated sweeps, full project validation, or broad automated checks without cause.
+
+## 7.3 Patch Report Rules
+
+After editing, report only:
+
+- Files changed.
+- Exact behavior changed.
+- Exact behavior untouched.
+- Whether acceptance passed.
+
+The agent MUST NOT summarize unrelated investigation.
+
+The agent MUST NOT use these phrases:
+
+- "I took the opportunity"
+- "I also cleaned up"
+- "I improved"
+- "I optimized"
+- "I noticed, so I changed"
+- "This should also help"
 
 ## 8. Document Generation
 

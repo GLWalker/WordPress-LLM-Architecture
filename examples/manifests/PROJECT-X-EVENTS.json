@@ -1,0 +1,35 @@
+{
+  "governance": {
+    "schema": "schemas/core/v1/event-schema.json",
+    "authority": "Tier 2",
+    "tier": 2,
+    "last_validated": "2026-05-15"
+  },
+  "records": [
+    {
+      "identifier": "project-x.events.initialize_core",
+      "type": "action",
+      "hook_name": "init",
+      "authority": "Tier 2",
+      "priority": 10,
+      "description": "Initializes Project X core components.",
+      "context": "global",
+      "governance": {
+        "is_immutable": true
+      }
+    },
+    {
+      "identifier": "project-x.filters.modify_content",
+      "type": "filter",
+      "hook_name": "the_content",
+      "authority": "Tier 2",
+      "priority": 20,
+      "accepted_args": 1,
+      "description": "Appends project-specific metadata to the content.",
+      "context": "frontend",
+      "governance": {
+        "is_immutable": false
+      }
+    }
+  ]
+}

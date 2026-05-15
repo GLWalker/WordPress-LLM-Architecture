@@ -1,4 +1,4 @@
-# WORDPRESS-THEME-EXTENSION-GOVERNANCE-CONTRACT.md
+# WORDPRESS-LLMS-THEME-EXTENSION-CONTRACT.md
 
 ## 1. Purpose
 
@@ -14,7 +14,7 @@ It ensures that:
 ## 2. Authority Hierarchy
 
 ### Tier 0 — Core Corpus (Precedence)
-Tier 0 files defined in `WORDPRESS-LAYER-GOVERNANCE-CONTRACT.md` take absolute precedence.
+Tier 0 files defined in `WORDPRESS-LLMS-LAYER-GOVERNANCE-CONTRACT.md` take absolute precedence.
 
 ### Tier 2 — Theme Extension Corpus
 **Definition**: High-priority theme-specific intelligence files.
