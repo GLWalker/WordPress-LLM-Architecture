@@ -355,4 +355,58 @@ If a response would violate:
 - Missing context rules
 - File modification rules
 
-→ **STOP** and request required files
+
+## 19. Native WordPress Media Modal Rules
+
+The agent MUST distinguish between **Forbidden Modal Infrastructure Replacement** and **Allowed Scoped Preview-Surface Augmentation**.
+
+### 19.1 Forbidden Modal Infrastructure Replacement
+
+Replacing native WordPress media modal infrastructure is strictly forbidden. Never replace, overwrite, or hide:
+
+- `.media-frame-content`
+- `.edit-attachment-frame`
+- `.attachment-media-view`
+- `.attachment-info`
+
+Do not treat these components as replaceable canvases. Do not inject full custom layouts into the modal frame.
+
+### 19.2 Scoped Media Preview Augmentation
+
+Scoped augmentation of a rendered media preview surface is allowed when all of the following are true:
+
+- The native WordPress media modal frame remains intact.
+- Native modal navigation remains intact.
+- Native attachment metadata fields (title, caption, etc.) remain intact.
+- Native modal routing and lifecycle remain intact.
+- The change is scoped to one attachment type or preview subtype (e.g., audio).
+- The change targets only the rendered preview surface for that attachment type.
+- The change does not replace the full `.attachment-media-view` or `.attachment-info`.
+- The change does not duplicate native WordPress fields.
+- The change does not globally dequeue WordPress media scripts or styles.
+- The change does not override WordPress media templates or Backbone views unless source inspection proves there is no safer insertion point.
+
+**Allowed examples**:
+- Hiding or suppressing only an existing audio preview/player element after render.
+- Mounting a custom player inside the existing audio preview area.
+- Adding scoped controls inside an existing preview surface.
+- Adding attachment-type-specific enhancement UI without changing modal infrastructure.
+
+### 19.3 First-Line Strategy
+
+For WordPress media modal extensions, the first-line strategy MUST be **additive rendered-surface augmentation**.
+
+Agents MUST NOT recommend overriding core WordPress media templates, replacing Backbone views, or globally changing media modal behavior as the first-line strategy. Template or view overrides may only be considered after source inspection proves that no safer rendered-surface insertion point exists.
+
+### 19.4 Prohibitions and Fallbacks
+
+- **Global Dequeue**: Agents MUST NOT recommend globally dequeuing `mediaelement`, `wp-mediaelement`, `media-views`, or related WordPress media assets. Core media assets may only be avoided or bypassed locally by scoped extension logic, not removed globally.
+- **Audio Players**: Replacing or suppressing a specific audio preview/player inside the modal is not automatically modal replacement. It is allowed only when the native modal frame, metadata fields, navigation, and lifecycle remain untouched.
+- **Task Classification**: A question about the default WordPress Media Library modal is **General WordPress** unless the user provides plugin/theme-specific files, custom modal code, or project-specific architecture.
+
+### 19.5 Fail Conditions
+
+If a request requires replacing native modal infrastructure or full modal content:
+- Stop and output exactly: `BLOCKED: Violates native WP media modal integration rules.`
+
+Do not treat scoped preview-surface augmentation as modal replacement when all scoped augmentation rules are satisfied.
